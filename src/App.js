@@ -1,20 +1,37 @@
 import lupa from '../src/imgs/lupa.svg';
 import fundo from '../src/imgs/fundo-busca.png';
-import logo from '../src/imgs/logo-teste.svg';
+import logo from '../src/imgs/logo-teste.png';
+import './style/home.css';
+import ItemPokemon from './componentes/itemPokemon'
 //  import {Container} from  '../style/'
 import './App.css';
 import { useEffect, useState } from 'react';
+
+<link rel="stylesheet" type="text/css" href="style/home.css" />
 
 function App() {
 
 
 
-
+  const [pesquisa, setPesquisa] = useState('')
   const [allPokemons, setAllPokemons] = useState([])
   // const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
 
+
+  const pesquisaOnChange = (event) => {
+    if (event.target.value === '') {
+
+      getAllPokemons().then(res => setAllPokemons(() => res))
+
+    }else{
+      getAllPokemons().then(res => setAllPokemons(() => res.filter((p) => p.nome.toUpperCase().includes((event.target.value.toUpperCase())))))
+
+    }
+
+  }
+
   const getAllPokemons = async () => {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151").then(res => res.json())
+    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=50").then(res => res.json())
     const data = response.results
     console.log(data)
 
@@ -57,23 +74,37 @@ function App() {
 
     <div className="App">
 
-      <div className='header-logo'>
-        <img src={logo} alt='' />
+      <div className='header-todo'>
+        <div className='header-logo'>
+          <img src={logo} alt='' />
+        </div>
+        <div className='buscador'>
+          {/* <img src={fundo} alt='' /> */}
+          <input onChange={pesquisaOnChange} placeholder='Digite aqui sua busca...' />
+          <img src={lupa} alt='' />
+        </div>
       </div>
-      <div className='buscador'>
-        <img src={fundo} alt=''/>
-        <input placeholder='Digite aqui sua busca...' 
-        />
-        <img src={lupa} alt='' />     
+
+
+      <div className='container'>
+
+        <div className='titulo'>
+
+          <h1>Resultado de busca</h1>
+          <button>Novo Card</button>
+
+        </div>
+
+        <div className='listaPokemon'>
+          {allPokemons.map(p => <ItemPokemon pokemon={p} />)}
+
+        </div>
+
       </div>
-
-
-
-      {allPokemons.map(pokemon => <li key={pokemon.id}>{pokemon.nome} <img src={pokemon.image}></img></li>)}
-
-
 
     </div>
+
+
   );
 }
 

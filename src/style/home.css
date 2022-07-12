@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header-logo {
+    background: #5F1478;
+    padding: 9px 0 9px 0;
+    background: #5F1478;
+}
+
+
+.header-logo img {
+    display: flex;
+    width: 134px;
+    height: 30px;
+}
+
+.header-todo {
+    background-image: url('../imgs/fundo-busca.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 261px;
+}
+
+.buscador img {
+
+    position: relative;
+    top: 113px;
+    left: -61px;
+}
+
+.buscador input {
+
+    position: relative;
+    top: 100px;
+    width: 1046px;
+    height: 75px;
+    border: white;
+    border-radius: 7px;
+    padding: 0px 14px;
+}
+
+
+.container {
+    margin: 0 auto;
+    width: 1046px;
+
+}
+
+
+.titulo {
+
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 0 25px 0;
+}
+
+.titulo button {
+
+    background: #ED7025;
+    width: 173px;
+    height: 48px;
+    border-radius: 5px;
+    border: 2px solid #ED7025;
+    color: white;
+    font-family: Co Bold;
+    font-size: 1.2em;
+}
+
+.listaPokemon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+
+.listaPokemon .pokemon {
+    border: 1px solid;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 4px -2px #989898;
+    -moz-box-shadow: 0 4px 4px -2px #989898;
+    -webkit-box-shadow: 0 4px 4px -2px #989898;
+    margin: 18px 0 26px 0;
+    padding-top: 15px;
+}
+
+
+.listaPokemon li {
+    list-style-type: none;
+    width: 234px;
+    height: 267px;
+
+}
