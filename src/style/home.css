@@ -45,7 +45,12 @@
 .container {
     margin: 0 auto;
     width: 1046px;
+    background: #F6F4F6;
 
+}
+.container-todo{
+
+    background: #F6F4F6;
 }
 
 
@@ -71,7 +76,7 @@
 .listaPokemon {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+   
 
 }
 
@@ -86,6 +91,13 @@
     -webkit-box-shadow: 0 4px 4px -2px #989898;
     margin: 18px 0 26px 0;
     padding-top: 15px;
+    background: whitesmoke;
+    transition: 0.5s;
+    margin: 0 10px 20px;
+}
+
+.listaPokemon .pokemon:hover{
+    transform: scale(1.1);
 }
 
 

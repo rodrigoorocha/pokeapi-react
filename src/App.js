@@ -13,7 +13,7 @@ function App() {
 
 
 
-  const [pesquisa, setPesquisa] = useState('')
+  //Aconst [pesquisa, setPesquisa] = useState('')
   const [allPokemons, setAllPokemons] = useState([])
   // const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
 
@@ -23,7 +23,7 @@ function App() {
 
       getAllPokemons().then(res => setAllPokemons(() => res))
 
-    }else{
+    } else {
       getAllPokemons().then(res => setAllPokemons(() => res.filter((p) => p.nome.toUpperCase().includes((event.target.value.toUpperCase())))))
 
     }
@@ -85,18 +85,21 @@ function App() {
         </div>
       </div>
 
+      <div className='container-todo'>
 
-      <div className='container'>
+        <div className='container'>
 
-        <div className='titulo'>
+          <div className='titulo'>
 
-          <h1>Resultado de busca</h1>
-          <button>Novo Card</button>
+            <h1>Resultado de busca</h1>
+            <button>Novo Card</button>
 
-        </div>
+          </div>
 
-        <div className='listaPokemon'>
-          {allPokemons.map(p => <ItemPokemon pokemon={p} />)}
+          <div className='listaPokemon'>
+            {allPokemons.map(p => <ItemPokemon pokemon={p} />)}
+
+          </div>
 
         </div>
 
