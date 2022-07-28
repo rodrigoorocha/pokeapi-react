@@ -4,27 +4,20 @@ function ItemPokemon({ pokemon }) {
     return (
 
         <li className='pokemon' key={pokemon.id}>
+            
 
-            <img src={pokemon.image} />
-            <div>
-                {pokemon.nome}
-            </div>
-
-            <div>
-                <div>
-                    <button>Editar</button>
-                    <image />
+            <div className='info-pokemon'>
+                <div className='foto-pokemon'>
+                    <img src={pokemon.image} alt="" />
                 </div>
-
-                <div>
-                    <button>Excluir</button>
-                    <image />
-                </div>
-
+                <hr/>
+                    <h3 className='nome-pokemon'>{pokemon.nome}</h3>
+            </div>           
+            <div className='actions'>
+                <button className='btn-excluir' type="button">Excluir</button>
+                <button className='btn-editar'type="button">Editar</button>
             </div>
         </li>
-
-
     );
 }
 
