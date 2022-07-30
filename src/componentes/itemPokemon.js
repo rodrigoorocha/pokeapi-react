@@ -1,6 +1,10 @@
 import '../style/home.css';
 
 function ItemPokemon({ pokemon }) {
+    const id = pokemon.url;
+    const URL = id.split("/");
+    const UrlID = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${URL[6]}.png`; 
+
     return (
 
         <li className='pokemon' key={pokemon.id}>
@@ -8,10 +12,10 @@ function ItemPokemon({ pokemon }) {
 
             <div className='info-pokemon'>
                 <div className='foto-pokemon'>
-                    <img src={pokemon.image} alt="" />
+                    <img src={UrlID} alt="" />
                 </div>
                 <hr/>
-                    <h3 className='nome-pokemon'>{pokemon.nome}</h3>
+                    <h3 className='nome-pokemon'>{pokemon.name}</h3>
             </div>           
             <div className='actions'>
                 <button className='btn-excluir' type="button">Excluir</button>
