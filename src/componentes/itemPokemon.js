@@ -1,5 +1,5 @@
 import '../style/home.css';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 //modal
 import Modal from 'react-modal';
 
@@ -73,12 +73,32 @@ function ItemPokemon({ pokemon }) {
                     contentLabel="Example Modal"
                 >
                     <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-                    <button onClick={closeModal}>close</button>
+                    <button onClick={closeModal}>X</button>
                     <div>
                         <img src={UrlID} alt="" />
-                        <h3 className='nome-pokemon'>{pokemon.name}</h3>
+                        <h3> Criar card</h3>
                     </div>
-                    border
+
+                    <div>
+                        <div>
+                            <p>Digite um nome para o card</p>
+                            
+                            <input type="text" placeholder={pokemon.name} />
+                        </div>
+
+                        <div>
+                            <p>Inclua uma imagem para aparecer no card</p>
+                            <p> Nenhum arquivo selecionado <button className='btn-aquivo' type="button">Escolher arquivo</button> </p>
+                            
+                        </div>
+
+                        <button className='btn-pagina' type="button">Novo Card</button>
+
+
+                    </div>
+
+
+                    
 
                 </Modal>
             </div>

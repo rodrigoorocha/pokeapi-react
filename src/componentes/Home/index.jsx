@@ -4,7 +4,7 @@ import logo from '../../imgs/logo-teste.png';
 import '../../style/home.css';
 import ItemPokemon from '../itemPokemon'
 import '../../App.css';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import api from '../../Service/api';
 
 
@@ -26,6 +26,20 @@ useEffect (()=>{
 
 },[])
 
+const vejaMais = useCallback(async () => {
+    try{
+      const offset = todosPokemons.length;
+      const res = await api.get('pokemon', {
+        params: {
+          offset,
+        },
+      });
+       setTodosPokemons([...todosPokemons, ...res.data.results])
+    } catch (error) {
+      console.log(error);
+    }
+}, [todosPokemons])
+
 // filtrar
 
 const [buscaPokemons, setBuscaPokemons] = useState("");
@@ -45,7 +59,7 @@ return(
       </h1>
       <div className="container display-flex align-center">
         <div className='container-buscador'>
-          <input className='campo-buscador' onChange={(evento) => setBuscaPokemons(evento.target.value)} value={buscaPokemons} type="search" placeholder='Digite aqui a sua busca...' />
+          <input className='campo-buscador'   onChange={(evento) => setBuscaPokemons(evento.target.value)} value={buscaPokemons} type="search" placeholder='Digite aqui a sua busca...' />
           <button className='btn-buscador' type="submit" />
         </div>
       </div>
@@ -62,8 +76,9 @@ return(
           </ul>
         </div>
       </section>
-    </main>
 
+      <button onClick={vejaMais}>Veja mais</button>
+    </main>
   </div >
 
 
