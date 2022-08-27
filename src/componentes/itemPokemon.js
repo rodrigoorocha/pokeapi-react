@@ -1,7 +1,8 @@
 import '../style/home.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 //modal
 import Modal from 'react-modal';
+import api from '../Service/api';
 
 // inicio modal
 // const customStyles = {
@@ -34,15 +35,44 @@ Modal.setAppElement('#root');
 
 
 function ItemPokemon({ pokemon }) {
-    const id = pokemon.url;
-    const URL = id.split("/");
-    const UrlID = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${URL[6]}.png`;
+    const url = pokemon.url;
+    const urlSplit = url.split("/");
+    const id = urlSplit[6]
+    const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${urlSplit[6]}.png`;
 
     // inicio modal
 
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
     const [modalIsOpenExcluir, setIsOpenExcluir] = useState(false);
+    const [pokemonInfo, setPokemonInfo] = useState({});
+
+
+
+    const getPokemonDetalhes = async () => {
+
+        const res = await api.get(`/pokemon/${id}`)
+
+        const tipo = res.data.types[0].type.name
+        const peso = res.data.weight
+        const altura = res.data.height
+
+
+        setPokemonInfo(
+            {
+                tipo,
+                peso,
+                altura
+            }
+        );
+
+    }
+
+    useEffect(() => {
+        getPokemonDetalhes()
+
+    },[])
+
 
     function openModal() {
         setIsOpen(true);
@@ -141,11 +171,12 @@ function ItemPokemon({ pokemon }) {
 
                 <div className='info-pokemon'>
                     <div className='foto-pokemon'>
-                        <img src={UrlID} alt="" />
+                        <img src={imgUrl} alt="" />
                     </div>
                     <hr />
                     <h3 className='nome-pokemon'>{pokemon.name}</h3>
                 </div>
+
                 <div className='actions'>
                     <button className='btn-excluir' onClick={openModalExcluir} type="button">Excluir</button>
                     <button className='btn-editar' onClick={openModal} type="button">Editar</button>
@@ -167,7 +198,7 @@ function ItemPokemon({ pokemon }) {
                         <h2 ref={(_subtitle) => (subtitle = _subtitle)}></h2>
                         {/* <button onClick={closeModal}>X</button> */}
                         <div className='header-modal'>
-                            <img className='foto-pokemon-modal' src={UrlID} alt="" />
+                            <img className='foto-pokemon-modal' src={imgUrl} alt="" />
                             <h3 className='titulo-pagina'> Criar card</h3>
                         </div>
 
@@ -176,8 +207,24 @@ function ItemPokemon({ pokemon }) {
                         <div>
                             <div className='custom-search'>
                                 <p className='nome-pokemon'>Digite um nome para o card</p>
-                                <input className='input-pokemon' type="text" placeholder={pokemon.name} />
+                                <input className='input-pokemon' type="text" value={pokemon.name} />
                             </div>
+
+                            <div className='custom-search'>
+                                <p className='nome-pokemon'>Tipo</p>
+                                <input className='input-pokemon' type="text" value={pokemonInfo.tipo} />
+                            </div>
+
+                            <div className='custom-search'>
+                                <p className='nome-pokemon'>altura</p>
+                                <input className='input-pokemon' type="text" value={pokemonInfo.altura} />
+                            </div>
+
+                            <div className='custom-search'>
+                                <p className='nome-pokemon'>peso</p>
+                                <input className='input-pokemon' type="text" value={pokemonInfo.peso} />
+                            </div>
+
 
                             <div>
 
@@ -221,7 +268,7 @@ function ItemPokemon({ pokemon }) {
                                 <p className='nome-pokemon'>CERTEZA QUE DESEJA EXCLUIR?</p>
                             </div>
 
-                            <hr className='divisoria-modal-excluir'/>
+                            <hr className='divisoria-modal-excluir' />
 
                             <div className='div-btn-excluir'>
                                 <button className='btn-excluir-confirmar' type="button">Excluir</button>
