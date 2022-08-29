@@ -7,49 +7,25 @@ import '../../App.css';
 import { useCallback, useEffect, useState } from 'react';
 import api from '../../Service/api';
 
-// const getPokemonsApi = async () => { 
-//   const pokemonsApi = await (await api.get('/pokemon?limit=10')).data.results
-//   return await Promise.all(pokemonsApi.map(async(p) => {
-//     const pokemon = await getSinglePokemonApi(p.url)
-//     return pokemon
-//   }))
-// }
-
-// const getSinglePokemonApi = async (url) => {
-//   return await (await axios.get(url))
-// }
 
 export function Home() {
 
 
   const [todosPokemons, setTodosPokemons] = useState([]);
+  const [buscaPokemons, setBuscaPokemons] = useState("");
 
   useEffect(() => {
-
-    // console.log(getPokemonsApi())
 
     api.get('/pokemon?limit=52')
     .then((res) => {
         setTodosPokemons(res.data.results);
-        // console.log(pokemon);
-        console.log(todosPokemons);
         
-
-        // Promise.all(
-        //   res.data.results.map(async (p) => {
-        //     const pokemon = await api.get(p.url)
-
-        //     return pokemon
-        //   })
-        // )
-
-
       })
       .catch((error) => {
         console.log(error);
       })
 
-  }, [])
+  }, []);
 
   const vejaMais = useCallback(async () => {
     try {
@@ -63,14 +39,18 @@ export function Home() {
     } catch (error) {
       console.log(error);
     }
-  }, [todosPokemons])
+  }, [todosPokemons]);
 
-  // filtrar
-
-  const [buscaPokemons, setBuscaPokemons] = useState("");
 
   const filtroPokemon = todosPokemons.filter((itemP) =>
     itemP.name.toLocaleLowerCase().includes(buscaPokemons.toLocaleLowerCase())
+
+
+    // const nomepokemon = itemP.name  
+    // const nomepokemonMinusculo = nomepokemon.toLocaleLowerCase()
+    // const buscaMinuscula = buscaPokemons.toLocaleLowerCase()
+    
+    // return nomepokemonMinusculo.includes(buscaMinuscula)
 
   );
 

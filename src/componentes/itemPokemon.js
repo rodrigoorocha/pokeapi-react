@@ -4,33 +4,7 @@ import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import api from '../Service/api';
 
-// inicio modal
-// const customStyles = {
-//     content: {
-//         // top: '19%',
-//         // left: '86%',
-//         // right: 'auto',
-//         // bottom: 'auto',
-//         // marginRight: '-50%',
-//         // transform: 'translate(-50%, -50%)',
-//         position : 'relative',
-//         float: 'right'
 
-
-
-//     },
-//     overlay:{
-//        position : 'absolute',
-//        marginTop : window.scrollY + 'px',
-//         height: '1000vh'
-
-
-//     }
-// };
-
-
-
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
 
@@ -38,7 +12,7 @@ function ItemPokemon({ pokemon }) {
     const url = pokemon.url;
     const urlSplit = url.split("/");
     const id = urlSplit[6]
-    const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${urlSplit[6]}.png`;
+    const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`;
 
     // inicio modal
 
