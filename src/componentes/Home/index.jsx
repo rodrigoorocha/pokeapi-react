@@ -1,6 +1,6 @@
 
 // import fundo from '../../imgs/fundo-busca.png';
-import logo from '../../imgs/logo-teste.png';
+import logo from '../../imgs/logo-test.png';
 import '../../style/home.css';
 import ItemPokemon from '../itemPokemon'
 import '../../App.css';
@@ -160,9 +160,9 @@ const customStylesadcionar = {
       </>
 
       <header>
-        <h1>
+        {/* <h1>
           <img src={logo} alt="Logomarca da Ímpar" />
-        </h1>
+        </h1> */}
         <div className="container display-flex align-center">
           <div className='container-buscador'>
             <input className='campo-buscador' onChange={(evento) => setBuscaPokemons(evento.target.value)} value={buscaPokemons} type="search" placeholder='Digite aqui a sua busca...' />
