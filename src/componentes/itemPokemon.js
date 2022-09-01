@@ -19,6 +19,7 @@ function ItemPokemon({ pokemon }) {
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
     const [modalIsOpenExcluir, setIsOpenExcluir] = useState(false);
+    
     const [pokemonInfo, setPokemonInfo] = useState({});
 
 
@@ -45,7 +46,7 @@ function ItemPokemon({ pokemon }) {
     useEffect(() => {
         getPokemonDetalhes()
 
-    },[])
+    }, [])
 
 
     function openModal() {
@@ -101,6 +102,14 @@ function ItemPokemon({ pokemon }) {
 
     ///////////////////////////////////////////////////////////
 
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////
 
     function openModalExcluir() {
         setIsOpenExcluir(true);
